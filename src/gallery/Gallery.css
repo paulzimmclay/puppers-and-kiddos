@@ -1,0 +1,6 @@
+.gallery__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-row: repeat(3, 1fr);
+  height: 100vh
+}

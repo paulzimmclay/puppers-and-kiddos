@@ -14,6 +14,16 @@ class Gallery extends Component {
         "thing4",
         "thing5",
         "thing6",
+        "thing5",
+        "thing6",
+        "thing5",
+        "thing6",
+        "thing5",
+        "thing6",
+        "thing5",
+        "thing6",
+        "thing5",
+        "thing6",
         "thing7"
       ]
      }

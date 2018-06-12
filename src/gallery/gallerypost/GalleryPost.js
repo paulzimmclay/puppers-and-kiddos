@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './GalleryPost.css'
 
 class GalleryPost extends Component {
   render() { 
     return ( 
-      <div className="item">x{this.props.post}</div>
+      <div className="item">{this.props.post}</div>
      )
   }
 }

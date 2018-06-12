@@ -1,15 +1,58 @@
-import React, { Component } from 'react';
+// AddCategory will display a form that allows the user to create a new column on the home page
+
+import React, { Component } from "react";
 
 class AddCategory extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {
+      category: "",
+      image: "",
+      created: ""
+    };
   }
-  render() { 
-    return ( 
-      <div className="addnew">addnew</div>
-     )
+
+  handleCategoryChange = event => {
+    this.setState({ category: event.target.value });
+  };
+  handleImageChange = event => {
+    this.setState({ image: event.target.value });
+  };
+
+  handleSubmit = event => {
+    this.setState({
+      created: new Date()
+    });
+    alert("A name was submitted: " + this.state.category);
+    event.preventDefault();
+    this.setState({
+      category: ""
+    });
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            value={this.state.category}
+            onChange={this.handleCategoryChange}
+          />
+        </label>
+        <label>
+          Image:
+          <input
+            type="text"
+            value={this.state.image}
+            onChange={this.handleImageChange}
+          />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
   }
 }
- 
+
 export default AddCategory;

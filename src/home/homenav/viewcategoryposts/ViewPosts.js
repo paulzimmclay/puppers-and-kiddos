@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ViewPosts extends Component {
+class ViewCategoryPosts extends Component {
   state = {}
   render() { 
     return ( 
@@ -9,4 +9,4 @@ class ViewPosts extends Component {
   }
 }
  
-export default ViewPosts;
+export default ViewCategoryPosts;

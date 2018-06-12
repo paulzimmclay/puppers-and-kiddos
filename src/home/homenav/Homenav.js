@@ -1,3 +1,5 @@
+// This component renders a title and three child component, each of which is a button in the home page
+
 import React, { Component } from "react";
 import "./Homenav.css";
 import AddNewPost from "./addnewpost/AddNewPost";
@@ -8,7 +10,6 @@ class Homenav extends Component {
   render() {
     return (
       <div className="homenav__container">
-        {console.log(this.props.index)}
         <h1 className="homenav__name">{this.props.categories}</h1>
         <AddNewPost />
         <ViewCategoryPosts />

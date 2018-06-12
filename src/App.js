@@ -1,3 +1,6 @@
+// Module displays a left sidebar and another component in the main column. 
+// State will be current user and current family
+
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
@@ -13,7 +16,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="app__container">
-          {/* Grid CSS Nav */}
+          {/* Grid CSS Nav contains left sidebar with 4 buttons */}
           <nav>
             <Sidebar />
           </nav>

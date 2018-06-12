@@ -1,3 +1,5 @@
+// This component renders a column with a title and three buttons for each category
+
 import React, { Component } from "react";
 import "./Home.css";
 import Homenav from "./homenav/Homenav";
@@ -15,7 +17,7 @@ class Home extends Component {
         {/* Map over array of keys of categories coming from DB */}
         {this.state.categories.map((category, index) => {
           return (
-            <div className="item item1">
+            <div className="notebook">
               <Homenav index={index} categories={category} />
             </div>
           );

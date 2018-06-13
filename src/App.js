@@ -16,16 +16,15 @@ class App extends Component {
     categories: ["James", "Penny", "Scout", "Pencil"]
   }
 
-  handleSubmit = event => {
-    console.log(event)
-    this.setState({
-      created: new Date()
-    });
-    event.preventDefault();
+  // handleSubmit = (event, category) => {
+  //   console.log(category)
+  //   this.setState({
+  //     created: new Date()
+  //   });
+  //   event.preventDefault();
 
-    // Need to figure out how to get 'new value' to instead be the Name passed from AddCategory (is it being passed?)
-    this.setState({ categories: [...this.state.categories, 'new value'] })
-  };
+  //   this.setState({ categories: [...this.state.categories, category] })
+  // };
 
   render() {
     return (
@@ -47,7 +46,9 @@ class App extends Component {
             <Route 
               path='/addcategory' 
               render={
-                (props) => <AddCategory handleSubmit={this.handleSubmit}/> 
+              (props) => <AddCategory 
+              // handleSubmit={this.handleSubmit}
+              /> 
               } />
             
             <Route path="/addpost" component={AddPost} />

@@ -19,11 +19,36 @@ class AddCategory extends Component {
     this.setState({ image: event.target.value });
   };
 
+  // handleFormSubmit = (event) => {
+  //   this.props.handleSubmit(event, this.state.category)
+  //   console.log(this.state.category);
+  //   fetch("http://localhost:5001/categorys", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       category: this.state.category
+  //     })
+  //   });
+  // };
 
+  submitMyForm = event => {
+    event.preventDefault();
+    fetch("http://localhost:5001/categorys", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        category: this.state.category
+      })
+    });
+  };
 
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit}>
+      <form onSubmit={this.submitMyForm}>
         <label>
           Name:
           <input

@@ -19,20 +19,11 @@ class AddCategory extends Component {
     this.setState({ image: event.target.value });
   };
 
-  handleSubmit = event => {
-    this.setState({
-      created: new Date()
-    });
-    alert("A name was submitted: " + this.state.category);
-    event.preventDefault();
-    this.setState({
-      category: ""
-    });
-  };
+
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.props.handleSubmit}>
         <label>
           Name:
           <input

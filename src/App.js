@@ -12,6 +12,21 @@ import AddPost from "./addpost/AddPost";
 import AddCategory from "./sidebar/addcategory/AddCategory";
 
 class App extends Component {
+  state = {
+    categories: ["James", "Penny", "Scout", "Pencil"]
+  }
+
+  handleSubmit = event => {
+    console.log(event)
+    this.setState({
+      created: new Date()
+    });
+    event.preventDefault();
+
+    // Need to figure out how to get 'new value' to instead be the Name passed from AddCategory (is it being passed?)
+    this.setState({ categories: [...this.state.categories, 'new value'] })
+  };
+
   render() {
     return (
       <BrowserRouter>
@@ -23,9 +38,18 @@ class App extends Component {
 
           {/* GridCSS "Main", will contain either Login, Home, a form, or Gallery */}
           <main>
-            <Route path="/home" component={Home} />
+            <Route 
+              path="/home" 
+              render={
+                (props) => <Home categories={this.state.categories}/> 
+              } />
             <Route path="/gallery" component={Gallery} />
-            <Route path="/addcategory" component={AddCategory} />
+            <Route 
+              path='/addcategory' 
+              render={
+                (props) => <AddCategory handleSubmit={this.handleSubmit}/> 
+              } />
+            
             <Route path="/addpost" component={AddPost} />
           </main>
         </div>

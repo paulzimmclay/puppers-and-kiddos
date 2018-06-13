@@ -8,14 +8,14 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: ["James", "Penny", "Scout", "Pencil"]
+      
     };
   }
   render() {
     return (
       <div className="home__container">
         {/* Map over array of keys of categories coming from DB */}
-        {this.state.categories.map((category, index) => {
+        {this.props.categories.map((category, index) => {
           return (
             <div className="notebook">
               <Homenav index={index} categories={category} />

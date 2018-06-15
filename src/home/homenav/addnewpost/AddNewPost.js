@@ -5,7 +5,7 @@ class AddNewPost extends Component {
   state = {}
   render() { 
     return ( 
-      <div className="add homenav__button">Add Newwww</div>
+      <div className="add homenav__button">Add New</div>
      )
   }
 }

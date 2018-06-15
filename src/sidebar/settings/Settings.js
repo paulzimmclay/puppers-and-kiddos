@@ -1,8 +1,12 @@
+// on mount, load current user info into state, set as default for form
+// on submit, update current state into current user info
+// logout option that purges session storage and loads /
+
 import React, { Component } from "react";
-import "./Register.css";
+import "./Settings.css";
 import { withRouter } from 'react-router-dom'
 
-class Register extends Component {
+class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -146,4 +150,4 @@ class Register extends Component {
   }
 }
 
-export default withRouter(Register);
+export default withRouter(Settings);

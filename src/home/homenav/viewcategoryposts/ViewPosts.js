@@ -8,7 +8,7 @@ class ViewCategoryPosts extends Component {
   state = {}
   render() { 
     return ( 
-      <Link className="homenav__button homenav__view" to='/addpost'>Viewerrrr</Link>
+      <Link className="homenav__button homenav__view" to='/addpost'>View</Link>
      )
   }
 }

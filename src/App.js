@@ -12,13 +12,41 @@ import AddPost from "./addpost/AddPost";
 import AddCategory from "./sidebar/addcategory/AddCategory";
 import Login from "./auth/login/Login";
 import Register from "./auth/register/Register";
+import Settings from "./sidebar/settings/Settings";
 
 class App extends Component {
   state = {
     categories: [],
-    newEmail: "",
-    newPassword: "",
-    currentUser: 1
+    currentUserId: ""
+  };
+
+  userLogin = () => {
+    // get id from local storage,
+    const userId = parseInt(localStorage.getItem("userId"));
+    this.setState({
+      currentUserId: userId
+    });
+    // use to check vs DB to retrieve user info
+    fetch(`http://localhost:5001/users?id=${userId}`)
+      .then(r => r.json())
+      .then(user => {
+        this.setState({
+          currentUserFirstName: user[0].firstname,
+          currentUserLastName: user[0].firstname,
+          currentUserFamilyId: user[0].family
+        });
+        return user[0].family;
+      })
+      .then(id => {
+        fetch(`http://localhost:5001/categorys?family=${id}`)
+          .then(r => r.json())
+          .then(categories => categories.map(item => item.category))
+          .then(categoryArray => {
+            this.setState({
+              categories: categoryArray
+            });
+          });
+      });
   };
 
   // handleSubmit = (event, category) => {
@@ -32,13 +60,7 @@ class App extends Component {
   // };
 
   componentDidMount() {
-    fetch("http://localhost:5001/categorys", {
-      method: "GET"
-    })
-      .then(r => r.json())
-      .then(thing => {
-        console.log(thing);
-      });
+    this.userLogin();
   }
 
   // Set Username/password field to newly created username and password
@@ -61,27 +83,29 @@ class App extends Component {
           {/* GridCSS "Main", will contain either Login, Home, a form, or Gallery */}
           <main>
             <Route
-              exact path="/"
-              render = {props => (
-                <Login
-                newEmail={this.state.newEmail}
-                newPassword={this.state.newPassword}
-                />
-              )}
+              exact
+              path="/"
+              render={props =>
+                this.state.currentUserId ? (
+                  <Redirect to={"/home"} />
+                ) : (
+                  <Login
+                    newEmail={this.state.newEmail}
+                    newPassword={this.state.newPassword}
+                    userLogin={this.userLogin}
+                  />
+                )
+              }
             />
             <Route path="/register" component={Register} />
             <Route
               path="/home"
-              render={props => 
-              this.state.currentUser ? (
-              <Home categories={this.state.categories} />
-            ) : (
-              <Redirect
-          to={{
-            pathname: "/",
-          }}
-        />
-            )
+              render={props =>
+                this.state.currentUserId ? (
+                  <Home categories={this.state.categories} />
+                ) : (
+                  <Redirect to={{ pathname: "/" }} />
+                )
               }
             />
             <Route path="/gallery" component={Gallery} />
@@ -95,6 +119,17 @@ class App extends Component {
             />
 
             <Route path="/addpost" component={AddPost} />
+            <Route 
+              path="/settings" 
+              render={props => (
+              <Settings 
+                email={this.state.email}
+                currentUserFirstName={this.state.currentUserFirstName}
+                currentUserLastName={this.state.currentUserLastName}
+                currentUserFamilyId={this.state.currentUserFamilyId}
+              />
+              )} 
+            />
           </main>
         </div>
       </BrowserRouter>

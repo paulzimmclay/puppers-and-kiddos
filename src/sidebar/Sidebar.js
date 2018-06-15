@@ -18,9 +18,7 @@ class Sidebar extends Component {
           <Link to='/gallery'  className="sidebar__button sidebar__viewall_button">
             View All
           </Link>
-          <div className="sidebar__button sidebar__settings_button">
-            Settings
-          </div>
+          <Link to='/settings' className="sidebar__button sidebar__settings_button">Settings</Link>
         </div>
     );
   }

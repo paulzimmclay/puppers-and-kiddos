@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Register.css";
 import { withRouter } from 'react-router-dom'
+import apiURL from '../../DB'
 
 class Register extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class Register extends Component {
     const submittedImageUrl = this.state.image;
     const submittedFamily = this.state.family;
 
-    fetch(`http://localhost:5001/users?email=${submittedEmail}`)
+    fetch(`${apiURL}/users?email=${submittedEmail}`)
       // Must be explicit on how to parse the response
       .then(r => r.json())
 
@@ -65,7 +66,7 @@ class Register extends Component {
 
           // if doesn't exist, add to user db and forward to login page, passing email/password
         } else {
-          fetch("http://localhost:5001/users", {
+          fetch("${apiURL}/users", {
             method: "POST",
             headers: {
               Accept: "application/json",

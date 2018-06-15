@@ -13,6 +13,8 @@ import AddCategory from "./sidebar/addcategory/AddCategory";
 import Login from "./auth/login/Login";
 import Register from "./auth/register/Register";
 import Settings from "./sidebar/settings/Settings";
+import apiURL from './DB'
+import EditCategory from './home/homenav/editcategory/EditCategory'
 
 class App extends Component {
   state = {
@@ -27,7 +29,7 @@ class App extends Component {
       currentUserId: userId
     });
     // use to check vs DB to retrieve user info
-    fetch(`http://localhost:5001/users?id=${userId}`)
+    fetch(`${apiURL}/users?id=${userId}`)
       .then(r => r.json())
       .then(user => {
         this.setState({
@@ -38,16 +40,22 @@ class App extends Component {
         return user[0].family;
       })
       .then(id => {
-        fetch(`http://localhost:5001/categorys?family=${id}`)
+        this.categoryUpdate()
+          });
+      
+  };
+
+  categoryUpdate = () => {
+    fetch(`${apiURL}/categorys?family=${this.state.currentUserFamilyId}`)
           .then(r => r.json())
           .then(categories => categories.map(item => item.category))
           .then(categoryArray => {
+            console.log(categoryArray)
             this.setState({
               categories: categoryArray
             });
           });
-      });
-  };
+  }
 
   // handleSubmit = (event, category) => {
   //   console.log(category)
@@ -62,6 +70,13 @@ class App extends Component {
   componentDidMount() {
     this.userLogin();
   }
+
+  addPostId = (id) => {
+    this.setState({
+      categoryId: id
+    })
+  }
+
 
   // Set Username/password field to newly created username and password
   setUsernamePassword = (newUsername, newPassword) => {
@@ -86,7 +101,7 @@ class App extends Component {
               exact
               path="/"
               render={props =>
-                this.state.currentUserId ? (
+                localStorage.getItem("userId") ? (
                   <Redirect to={"/home"} />
                 ) : (
                   <Login
@@ -108,27 +123,61 @@ class App extends Component {
                 )
               }
             />
-            <Route path="/gallery" component={Gallery} />
+            <Route
+              path="/gallery"
+              render={props =>
+                this.state.currentUserId ? (
+                  <Gallery />
+                ) : (
+                  <Redirect to={{ pathname: "/" }} />
+                )
+              }
+            />
             <Route
               path="/addcategory"
-              render={props => (
-                <AddCategory
-                // handleSubmit={this.handleSubmit}
-                />
-              )}
+              render={props =>
+                this.state.currentUserId ? (
+                  <AddCategory 
+                  currentUserFamilyId={this.state.currentUserFamilyId}
+                  categoryUpdate={this.categoryUpdate}
+                  />
+                ) : (
+                  <Redirect to={{ pathname: "/" }} />
+                )
+              }
             />
-
-            <Route path="/addpost" component={AddPost} />
-            <Route 
-              path="/settings" 
-              render={props => (
-              <Settings 
-                email={this.state.email}
-                currentUserFirstName={this.state.currentUserFirstName}
-                currentUserLastName={this.state.currentUserLastName}
-                currentUserFamilyId={this.state.currentUserFamilyId}
-              />
-              )} 
+            <Route
+              path="/editcategory"
+              render={props =>
+                this.state.currentUserId ? (
+                  <EditCategory
+                  currentUserFamilyId={this.state.currentUserFamilyId}
+                  categoryUpdate={this.categoryUpdate}
+                  />
+                ) : (
+                  <Redirect to={{ pathname: "/" }} />
+                )
+              }
+            />
+            <Route
+              path="/settings"
+              render={props =>
+                this.state.currentUserId ? (
+                  <Settings />
+                ) : (
+                  <Redirect to={{ pathname: "/" }} />
+                )
+              }
+            />
+            <Route
+              path="/addpost"
+              render={props =>
+                this.state.currentUserId ? (
+                  <AddPost />
+                ) : (
+                  <Redirect to={{ pathname: "/" }} />
+                )
+              }
             />
           </main>
         </div>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import apiURL from '../../DB'
 
 class Login extends Component {
   state = {
@@ -20,7 +21,7 @@ class Login extends Component {
   // eventhandler for submit button
   submitLoginForm = event => {
     event.preventDefault();
-    fetch("http://localhost:5001/users")
+    fetch(`${apiURL}/users`)
       .then(r => r.json())
       .then(users => {
         const submittedInfo = users.find(

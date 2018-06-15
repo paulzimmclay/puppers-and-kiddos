@@ -1,6 +1,7 @@
 // AddCategory will display a form that allows the user to create a new column on the home page
 
 import React, { Component } from "react";
+import apiURL from '../../DB'
 
 class AddCategory extends Component {
   constructor(props) {
@@ -19,31 +20,19 @@ class AddCategory extends Component {
     this.setState({ image: event.target.value });
   };
 
-  // handleFormSubmit = (event) => {
-  //   this.props.handleSubmit(event, this.state.category)
-  //   console.log(this.state.category);
-  //   fetch("http://localhost:5001/categorys", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       category: this.state.category
-  //     })
-  //   });
-  // };
-
   submitMyForm = event => {
     event.preventDefault();
-    fetch("http://localhost:5001/categorys", {
+    fetch(`${apiURL}/categorys`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        category: this.state.category
+        category: this.state.category,
+        family: this.props.currentUserFamilyId
       })
-    });
+    }).then(() => this.props.categoryUpdate());
+    
   };
 
   render() {

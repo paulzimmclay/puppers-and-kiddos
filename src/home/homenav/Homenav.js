@@ -5,6 +5,13 @@ import "./Homenav.css";
 import AddNewPost from "./addnewpost/AddNewPost";
 import ViewCategoryPosts from "./viewcategoryposts/ViewPosts";
 import EditCategory from "./editcategory/EditCategory";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Link
+} from "react-router-dom";
+import AddPost from "../../addpost/AddPost";
 
 class Homenav extends Component {
   render() {
@@ -13,7 +20,12 @@ class Homenav extends Component {
         <h1 className="homenav__name">{this.props.categories}</h1>
         <AddNewPost />
         <ViewCategoryPosts />
-        <EditCategory />
+        <Link className="homenav__button homenav__edit" to="/editcategory">
+          Edit
+        </Link>
+        <Router>
+          <Route path="/addpost" component={AddPost} />
+        </Router>
       </div>
     );
   }

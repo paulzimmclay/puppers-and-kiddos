@@ -50,22 +50,12 @@ class App extends Component {
           .then(r => r.json())
           .then(categories => categories.map(item => item.category))
           .then(categoryArray => {
-            console.log(categoryArray)
             this.setState({
               categories: categoryArray
             });
           });
   }
 
-  // handleSubmit = (event, category) => {
-  //   console.log(category)
-  //   this.setState({
-  //     created: new Date()
-  //   });
-  //   event.preventDefault();
-
-  //   this.setState({ categories: [...this.state.categories, category] })
-  // };
 
   componentDidMount() {
     this.userLogin();
@@ -117,7 +107,8 @@ class App extends Component {
               path="/home"
               render={props =>
                 this.state.currentUserId ? (
-                  <Home categories={this.state.categories} />
+                  <Home categories={this.state.categories} 
+                  />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
                 )
@@ -146,13 +137,16 @@ class App extends Component {
                 )
               }
             />
+            {/* <Route path="/editcategory/:categoryid" component={EditCategory} /> */}
             <Route
-              path="/editcategory"
-              render={props =>
+              path="/editcategory/:categoryid"
+              render={(props) =>
                 this.state.currentUserId ? (
                   <EditCategory
                   currentUserFamilyId={this.state.currentUserFamilyId}
                   categoryUpdate={this.categoryUpdate}
+                  {...props}
+                  // id={this.state.match.categoryid}
                   />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />

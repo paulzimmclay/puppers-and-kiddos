@@ -8,16 +8,25 @@ class EditCategory extends Component {
     super(props);
     this.state = {
       category: "",
-      image: "",
       created: ""
-    };
+    }
+  }
+
+  componentDidMount () {
+    const id = this.props.match.params.categoryid
+
+    fetch(`${apiURL}/categorys/${id}`, {
+      method: "DELETE"
+    }
+
+    )
+      .then((id) => {
+        this.setState(() => ({ id }))
+      })
   }
 
   handleCategoryChange = event => {
     this.setState({ category: event.target.value });
-  };
-  handleImageChange = event => {
-    this.setState({ image: event.target.value });
   };
 
   submitMyForm = event => {
@@ -35,6 +44,13 @@ class EditCategory extends Component {
     
   };
 
+deleteCategory = () => {
+  fetch(`${apiURL}/categorys/${this.url}`)
+  .then((category) => {
+    console.log(category)
+  })
+}
+
   render() {
     return (
       <form onSubmit={this.submitMyForm}>
@@ -46,15 +62,8 @@ class EditCategory extends Component {
             onChange={this.handleCategoryChange}
           />
         </label>
-        <label>
-          Image:
-          <input
-            type="text"
-            value={this.state.image}
-            onChange={this.handleImageChange}
-          />
-        </label>
         <input type="submit" value="Submit" />
+        <button className="editcategory__deletecategory" onClick={this.deleteCategory}>Delete Category</button>
       </form>
     );
   }

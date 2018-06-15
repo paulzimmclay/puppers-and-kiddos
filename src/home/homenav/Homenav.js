@@ -14,21 +14,29 @@ import {
 import AddPost from "../../addpost/AddPost";
 
 class Homenav extends Component {
+  
+  indexURL = "/editcategory/" + this.props.index
+
+  cateogryIndex = () => {
+    this.props.setCategoryId(this.props.index)
+  }
+
   render() {
+    const categoryIndex = this.props.index
     return (
       <div className="homenav__container">
         <h1 className="homenav__name">{this.props.categories}</h1>
         <AddNewPost />
         <ViewCategoryPosts />
-        <Link className="homenav__button homenav__edit" to="/editcategory">
+        <Link className="homenav__button homenav__edit" to={this.indexURL}>
           Edit
         </Link>
-        <Router>
-          <Route path="/addpost" component={AddPost} />
-        </Router>
       </div>
     );
   }
 }
 
 export default Homenav;
+
+
+// Onclick on Edit div passes Index in HomeNav to App.js, sets to state, then passes to Edit CAtegory button

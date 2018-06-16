@@ -22,13 +22,14 @@ class App extends Component {
     currentUserId: ""
   };
 
+  // Handles user login. Used as props on Login.js.
   userLogin = () => {
-    // get id from local storage,
+    // Get ID from local storage (set on Login.js), set to state
     const userId = parseInt(localStorage.getItem("userId"));
     this.setState({
       currentUserId: userId
     });
-    // use to check vs DB to retrieve user info
+    // Use ID from local storage to get user info, load to state
     fetch(`${apiURL}/users?id=${userId}`)
       .then(r => r.json())
       .then(user => {
@@ -45,10 +46,11 @@ class App extends Component {
       
   };
 
+  // Uses current user's family ID to get a list of that family's categories to render on Home.js
   categoryUpdate = () => {
     fetch(`${apiURL}/categorys?family=${this.state.currentUserFamilyId}`)
           .then(r => r.json())
-          .then(categories => categories.map(item => item.category))
+          .then(categories => categories.map(item => [item.category, item.id]))
           .then(categoryArray => {
             this.setState({
               categories: categoryArray
@@ -61,11 +63,20 @@ class App extends Component {
     this.userLogin();
   }
 
-  addPostId = (id) => {
-    this.setState({
-      categoryId: id
+  // addPostId = (id) => {
+  //   this.setState({
+  //     categoryId: id
+  //   })
+  // }
+
+  deleteCategory = (catId) => {
+    fetch(`${apiURL}/categorys/${catId}`, {
+      method: "DELETE"
+    }).then(() => {
+      this.categoryUpdate()
     })
-  }
+    }
+
 
 
   // Set Username/password field to newly created username and password
@@ -137,16 +148,15 @@ class App extends Component {
                 )
               }
             />
-            {/* <Route path="/editcategory/:categoryid" component={EditCategory} /> */}
             <Route
               path="/editcategory/:categoryid"
               render={(props) =>
                 this.state.currentUserId ? (
                   <EditCategory
+                  {...props}
                   currentUserFamilyId={this.state.currentUserFamilyId}
                   categoryUpdate={this.categoryUpdate}
-                  {...props}
-                  // id={this.state.match.categoryid}
+                  deleteCategory={this.deleteCategory}
                   />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />

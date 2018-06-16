@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import apiURL from "../../../DB";
+import { withRouter } from 'react-router-dom'
 
 class EditCategory extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class EditCategory extends Component {
 
   // submitMyForm = event => {
   //   event.preventDefault();
+  //   console.log("submit")
   //   fetch(`${apiURL}/categorys`, {
   //     method: "POST",
   //     headers: {
@@ -36,16 +38,16 @@ class EditCategory extends Component {
   //   }).then(() => this.props.categoryUpdate());
   // };
 
-  deleteCategory = () => {
-    fetch(`${apiURL}/categorys/${this.state.id}`, {
-      method: "DELETE"
-    }).then(() => {
-      this.props.categoryUpdate()
-    })
-  };
+  deleteButtonClick = () => {
+    // deleteCategory function, which is on App, to delete the category
+    this.props.deleteCategory(this.props.match.params.categoryid)
+  }
+
+  
 
   render() {
     return (
+      <div className="editcategory__container">
       <form onSubmit={this.submitMyForm}>
         <label>
           Name:
@@ -56,15 +58,16 @@ class EditCategory extends Component {
           />
         </label>
         <input type="submit" value="Submit" />
+      </form>
         <button
           className="editcategory__deletecategory"
-          onClick={this.deleteCategory}
+          onClick={this.deleteButtonClick}
         >
           Delete Category
         </button>
-      </form>
+      </div>
     );
   }
 }
 
-export default EditCategory;
+export default withRouter(EditCategory)

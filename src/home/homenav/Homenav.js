@@ -15,17 +15,12 @@ import AddPost from "../../addpost/AddPost";
 
 class Homenav extends Component {
   
-  indexURL = "/editcategory/" + this.props.index
-
-  cateogryIndex = () => {
-    this.props.setCategoryId(this.props.index)
-  }
-
+  indexURL = "/editcategory/" + this.props.categories[1]
+  
   render() {
-    const categoryIndex = this.props.index
     return (
       <div className="homenav__container">
-        <h1 className="homenav__name">{this.props.categories}</h1>
+        <h1 className="homenav__name">{this.props.categories[0]}</h1>
         <AddNewPost />
         <ViewCategoryPosts />
         <Link className="homenav__button homenav__edit" to={this.indexURL}>

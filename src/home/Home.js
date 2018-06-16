@@ -18,7 +18,7 @@ class Home extends Component {
         {this.props.categories.map((category, index) => {
           return (
             <div className="notebook">
-              <Homenav index={index} categories={category} />
+              <Homenav index={index} categories={category} setCategoryId={this.props.setCategoryId}/>
             </div>
           );
         })}

@@ -163,10 +163,12 @@ class App extends Component {
               }
             />
             <Route
-              path="/addnewimagepost"
+              path="/addnewimagepost/:categoryid"
               render={props =>
                 this.state.currentUserId ? (
-                  <AddNewImagePost />
+                  <AddNewImagePost 
+                  {...props}
+                  />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
                 )

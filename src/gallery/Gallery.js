@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
 import GalleryPost from './gallerypost/GalleryPost';
 import './Gallery.css'
+import apiURL from '../DB'
 
 
 class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      posts: [
-        "thing1",
-        "thing2",
-        "thing3",
-        "thing4",
-        "thing5",
-        "thing6",
-        "thing5",
-        "thing6",
-        "thing5",
-        "thing6",
-        "thing5",
-        "thing6",
-        "thing5",
-        "thing6",
-        "thing5",
-        "thing6",
-        "thing7"
-      ]
+      posts: [1, 2, 3]
      }
   }
+
+// getGalleryUrl = () => {
+//   if (this.props.match.params.family !== "any" && ) {
+//     return 
+//   } else if (true) {
+//     return 
+//   } else {
+//     return 
+//   }
+// }
+
+//   componentDidMount() {
+    
+//   }
+
   render() { 
     return ( 
       <div className="gallery__container">

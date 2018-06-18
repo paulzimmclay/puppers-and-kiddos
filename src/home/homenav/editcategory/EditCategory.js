@@ -1,4 +1,4 @@
-// AddCategory will display a form that allows the user to create a new column on the home page
+// EditCategory will display a form that allows the user to edit an exsting column, or delete it
 
 import React, { Component } from "react";
 import apiURL from "../../../DB";

@@ -1,36 +1,36 @@
 // Module displays a left sidebar and another component in the main column.
 // State will be current user and current family
 
-import React, { Component } from "react"
-import logo from "./logo.svg"
-import "./App.css"
-import Sidebar from "./sidebar/Sidebar"
-import Home from "./home/Home"
-import Gallery from "./gallery/Gallery"
-import { BrowserRouter, Route, Redirect } from "react-router-dom"
-import AddCategory from "./sidebar/addcategory/AddCategory"
-import Login from "./auth/login/Login"
-import Register from "./auth/register/Register"
-import Settings from "./sidebar/settings/Settings"
-import apiURL from "./DB"
-import EditCategory from "./home/homenav/editcategory/EditCategory"
-import AddNewImagePost from "./home/homenav/addnewimagepost/AddNewImagePost"
-import AddNewStoryPost from "./home/homenav/addnewstorypost/AddNewStoryPost"
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Sidebar from "./sidebar/Sidebar";
+import Home from "./home/Home";
+import Gallery from "./gallery/Gallery";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import AddCategory from "./sidebar/addcategory/AddCategory";
+import Login from "./auth/login/Login";
+import Register from "./auth/register/Register";
+import Settings from "./sidebar/settings/Settings";
+import apiURL from "./DB";
+import EditCategory from "./home/homenav/editcategory/EditCategory";
+import AddNewImagePost from "./home/homenav/addnewimagepost/AddNewImagePost";
+import AddNewStoryPost from "./home/homenav/addnewstorypost/AddNewStoryPost";
 
 class App extends Component {
   state = {
     categories: [],
     currentUserId: "",
-    currentUserFamilyId: 0,
-  }
+    currentUserFamilyId: 0
+  };
 
   // Handles user login. Used as props on Login.js.
   userLogin = () => {
     // Get ID from local storage (set on Login.js), set to state
-    const userId = parseInt(localStorage.getItem("userId"))
+    const userId = parseInt(localStorage.getItem("userId"));
     this.setState({
       currentUserId: userId
-    })
+    });
     // Use ID from local storage to get user info, load to state
     fetch(`${apiURL}/users?id=${userId}`)
       .then(r => r.json())
@@ -39,13 +39,13 @@ class App extends Component {
           currentUserFirstName: user[0].firstname,
           currentUserLastName: user[0].firstname,
           currentUserFamilyId: user[0].family
-        })
-        return user[0].family
+        });
+        return user[0].family;
       })
       .then(id => {
-        this.categoryUpdate()
-      })
-  }
+        this.categoryUpdate();
+      });
+  };
 
   // Uses current user's family ID to get a list of that family's categories to render on Home.js
   categoryUpdate = () => {
@@ -55,29 +55,29 @@ class App extends Component {
       .then(categoryArray => {
         this.setState({
           categories: categoryArray
-        })
-      })
-  }
+        });
+      });
+  };
 
   componentDidMount() {
-    this.userLogin()
+    this.userLogin();
   }
 
   deleteCategory = catId => {
     fetch(`${apiURL}/categorys/${catId}`, {
       method: "DELETE"
     }).then(() => {
-      this.categoryUpdate()
-    })
-  }
+      this.categoryUpdate();
+    });
+  };
 
   // Set Username/password field to newly created username and password
   setUsernamePassword = (newUsername, newPassword) => {
     this.setState({
       newEmail: newUsername,
       newPassword: newPassword
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -85,7 +85,7 @@ class App extends Component {
         <div className="app__container">
           {/* Grid CSS Nav contains left sidebar with 4 buttons */}
           <nav>
-            <Sidebar />
+            <Sidebar currentUserFamilyId={this.state.currentUserFamilyId}/>
           </nav>
 
           {/* GridCSS "Main", will contain either Login, Home, a form, or Gallery */}
@@ -117,10 +117,13 @@ class App extends Component {
               }
             />
             <Route
-              path="/gallery"
+              path="/gallery/:family/:category"
               render={props =>
                 this.state.currentUserId ? (
-                  <Gallery />
+                  <Gallery
+                    {...props}
+                    currentUserFamilyId={this.state.currentUserFamilyId}
+                  />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
                 )
@@ -168,9 +171,9 @@ class App extends Component {
               path="/addnewimagepost/:categoryid"
               render={props =>
                 this.state.currentUserId ? (
-                  <AddNewImagePost 
-                  {...props}
-                  currentUserFamilyId={this.state.currentUserFamilyId}
+                  <AddNewImagePost
+                    {...props}
+                    currentUserFamilyId={this.state.currentUserFamilyId}
                   />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
@@ -181,9 +184,9 @@ class App extends Component {
               path="/addnewstorypost/:categoryid"
               render={props =>
                 this.state.currentUserId ? (
-                  <AddNewStoryPost 
-                  {...props}
-                  currentUserFamilyId={this.state.currentUserFamilyId}
+                  <AddNewStoryPost
+                    {...props}
+                    currentUserFamilyId={this.state.currentUserFamilyId}
                   />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
@@ -193,8 +196,8 @@ class App extends Component {
           </main>
         </div>
       </BrowserRouter>
-    )
+    );
   }
 }
 
-export default App
+export default App;

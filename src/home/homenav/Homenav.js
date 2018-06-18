@@ -17,7 +17,7 @@ class Homenav extends Component {
   categoryIdUrl = "/editcategory/" + this.props.categories[1]
   addImagePostUrl = "/addnewimagepost/" + this.props.categories[1]
   addStoryPostUrl = "/addnewstorypost/" + this.props.categories[1]
-  viewCateogryPostUrl = "/viewcategory/" + this.props.categories[1]
+  viewCateogryPostUrl = `/gallery/${this.props.currentUserFamilyId}/${this.props.categories[1]}`
   
   render() {
     return (
@@ -27,7 +27,7 @@ class Homenav extends Component {
         <Link to={this.addImagePostUrl} className="add">New Picture</Link>
         <Link to={this.addStoryPostUrl} className="add">New Story</Link>
         </div>
-        <ViewCategoryPosts />
+        <Link to={this.viewCateogryPostUrl}>View Posts</Link>
         <Link className="homenav__button homenav__edit" to={this.categoryIdUrl}>
           Edit
         </Link>

@@ -1,34 +1,34 @@
 // Module displays a left sidebar and another component in the main column.
 // State will be current user and current family
 
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import Sidebar from "./sidebar/Sidebar";
-import Home from "./home/Home";
-import Gallery from "./gallery/Gallery";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import AddPost from "./addpost/AddPost";
-import AddCategory from "./sidebar/addcategory/AddCategory";
-import Login from "./auth/login/Login";
-import Register from "./auth/register/Register";
-import Settings from "./sidebar/settings/Settings";
-import apiURL from './DB'
-import EditCategory from './home/homenav/editcategory/EditCategory'
+import React, { Component } from "react"
+import logo from "./logo.svg"
+import "./App.css"
+import Sidebar from "./sidebar/Sidebar"
+import Home from "./home/Home"
+import Gallery from "./gallery/Gallery"
+import { BrowserRouter, Route, Redirect } from "react-router-dom"
+import AddCategory from "./sidebar/addcategory/AddCategory"
+import Login from "./auth/login/Login"
+import Register from "./auth/register/Register"
+import Settings from "./sidebar/settings/Settings"
+import apiURL from "./DB"
+import EditCategory from "./home/homenav/editcategory/EditCategory"
+import AddNewImagePost from "./home/homenav/addnewpost/AddNewImagePost";
 
 class App extends Component {
   state = {
     categories: [],
     currentUserId: ""
-  };
+  }
 
   // Handles user login. Used as props on Login.js.
   userLogin = () => {
     // Get ID from local storage (set on Login.js), set to state
-    const userId = parseInt(localStorage.getItem("userId"));
+    const userId = parseInt(localStorage.getItem("userId"))
     this.setState({
       currentUserId: userId
-    });
+    })
     // Use ID from local storage to get user info, load to state
     fetch(`${apiURL}/users?id=${userId}`)
       .then(r => r.json())
@@ -37,55 +37,45 @@ class App extends Component {
           currentUserFirstName: user[0].firstname,
           currentUserLastName: user[0].firstname,
           currentUserFamilyId: user[0].family
-        });
-        return user[0].family;
+        })
+        return user[0].family
       })
       .then(id => {
         this.categoryUpdate()
-          });
-      
-  };
+      })
+  }
 
   // Uses current user's family ID to get a list of that family's categories to render on Home.js
   categoryUpdate = () => {
     fetch(`${apiURL}/categorys?family=${this.state.currentUserFamilyId}`)
-          .then(r => r.json())
-          .then(categories => categories.map(item => [item.category, item.id]))
-          .then(categoryArray => {
-            this.setState({
-              categories: categoryArray
-            });
-          });
+      .then(r => r.json())
+      .then(categories => categories.map(item => [item.category, item.id]))
+      .then(categoryArray => {
+        this.setState({
+          categories: categoryArray
+        })
+      })
   }
-
 
   componentDidMount() {
-    this.userLogin();
+    this.userLogin()
   }
 
-  // addPostId = (id) => {
-  //   this.setState({
-  //     categoryId: id
-  //   })
-  // }
-
-  deleteCategory = (catId) => {
+  deleteCategory = catId => {
     fetch(`${apiURL}/categorys/${catId}`, {
       method: "DELETE"
     }).then(() => {
       this.categoryUpdate()
     })
-    }
-
-
+  }
 
   // Set Username/password field to newly created username and password
   setUsernamePassword = (newUsername, newPassword) => {
     this.setState({
       newEmail: newUsername,
       newPassword: newPassword
-    });
-  };
+    })
+  }
 
   render() {
     return (
@@ -118,8 +108,7 @@ class App extends Component {
               path="/home"
               render={props =>
                 this.state.currentUserId ? (
-                  <Home categories={this.state.categories} 
-                  />
+                  <Home categories={this.state.categories} />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
                 )
@@ -139,9 +128,9 @@ class App extends Component {
               path="/addcategory"
               render={props =>
                 this.state.currentUserId ? (
-                  <AddCategory 
-                  currentUserFamilyId={this.state.currentUserFamilyId}
-                  categoryUpdate={this.categoryUpdate}
+                  <AddCategory
+                    currentUserFamilyId={this.state.currentUserFamilyId}
+                    categoryUpdate={this.categoryUpdate}
                   />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
@@ -150,13 +139,13 @@ class App extends Component {
             />
             <Route
               path="/editcategory/:categoryid"
-              render={(props) =>
+              render={props =>
                 this.state.currentUserId ? (
                   <EditCategory
-                  {...props}
-                  currentUserFamilyId={this.state.currentUserFamilyId}
-                  categoryUpdate={this.categoryUpdate}
-                  deleteCategory={this.deleteCategory}
+                    {...props}
+                    currentUserFamilyId={this.state.currentUserFamilyId}
+                    categoryUpdate={this.categoryUpdate}
+                    deleteCategory={this.deleteCategory}
                   />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
@@ -174,10 +163,10 @@ class App extends Component {
               }
             />
             <Route
-              path="/addpost"
+              path="/addnewimagepost"
               render={props =>
                 this.state.currentUserId ? (
-                  <AddPost />
+                  <AddNewImagePost />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
                 )
@@ -186,8 +175,8 @@ class App extends Component {
           </main>
         </div>
       </BrowserRouter>
-    );
+    )
   }
 }
 
-export default App;
+export default App

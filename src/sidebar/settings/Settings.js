@@ -106,7 +106,7 @@ class Settings extends Component {
       <div className="formDiv">
         <form onSubmit={this.handleSubmit} className="form-login">
           <h1 className="h3 mb-3 font-weight-normal">
-            Register to use Puppers 'n' Kiddos:
+            Edit your user settings:
           </h1>
 
           <input

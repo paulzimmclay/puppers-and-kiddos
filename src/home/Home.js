@@ -15,10 +15,10 @@ class Home extends Component {
     return (
       <div className="home__container">
         {/* Map over array of keys of categories coming from DB */}
-        {this.props.categories.map((category, index) => {
+        {this.props.categories.map((category) => {
           return (
-            <div className="notebook">
-              <Homenav index={index} categories={category} setCategoryId={this.props.setCategoryId}/>
+            <div className="notebook" key={category[1]} >
+              <Homenav categories={category}/>
             </div>
           );
         })}

@@ -41,6 +41,9 @@ class EditCategory extends Component {
   deleteButtonClick = () => {
     // deleteCategory function, which is on App, to delete the category
     this.props.deleteCategory(this.props.match.params.categoryid)
+    this.props.history.push(
+      '/'
+    )
   }
 
   

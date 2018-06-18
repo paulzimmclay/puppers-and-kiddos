@@ -15,6 +15,7 @@ import Settings from "./sidebar/settings/Settings"
 import apiURL from "./DB"
 import EditCategory from "./home/homenav/editcategory/EditCategory"
 import AddNewImagePost from "./home/homenav/addnewimagepost/AddNewImagePost"
+import AddNewStoryPost from "./home/homenav/addnewstorypost/AddNewStoryPost"
 
 class App extends Component {
   state = {
@@ -168,6 +169,19 @@ class App extends Component {
               render={props =>
                 this.state.currentUserId ? (
                   <AddNewImagePost 
+                  {...props}
+                  currentUserFamilyId={this.state.currentUserFamilyId}
+                  />
+                ) : (
+                  <Redirect to={{ pathname: "/" }} />
+                )
+              }
+            />
+            <Route
+              path="/addnewstorypost/:categoryid"
+              render={props =>
+                this.state.currentUserId ? (
+                  <AddNewStoryPost 
                   {...props}
                   currentUserFamilyId={this.state.currentUserFamilyId}
                   />

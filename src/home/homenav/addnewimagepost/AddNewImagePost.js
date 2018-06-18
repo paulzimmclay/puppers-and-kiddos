@@ -34,10 +34,12 @@ class AddNewImagePost extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        family: this.props.currentUserFamilyId,
         caption: this.state.caption,
         image: this.state.image,
         family: this.props.currentUserFamilyId,
-        category: +this.props.match.params.categoryid
+        category: +this.props.match.params.categoryid,
+        date: new Date() 
 
       })
     }).then((r) => console.log(r));

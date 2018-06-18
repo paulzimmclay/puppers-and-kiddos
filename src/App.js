@@ -19,7 +19,8 @@ import AddNewImagePost from "./home/homenav/addnewimagepost/AddNewImagePost"
 class App extends Component {
   state = {
     categories: [],
-    currentUserId: ""
+    currentUserId: "",
+    currentUserFamilyId: 0,
   }
 
   // Handles user login. Used as props on Login.js.
@@ -168,6 +169,7 @@ class App extends Component {
                 this.state.currentUserId ? (
                   <AddNewImagePost 
                   {...props}
+                  currentUserFamilyId={this.state.currentUserFamilyId}
                   />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />

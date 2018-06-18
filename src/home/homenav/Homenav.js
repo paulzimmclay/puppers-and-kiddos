@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import "./Homenav.css";
-import AddNewPost from "./addnewpost/AddNewPost";
+import AddNewPost from "./addnewimagepost/AddNewImagePost";
 import ViewCategoryPosts from "./viewcategoryposts/ViewPosts";
 import EditCategory from "./editcategory/EditCategory";
 import {
@@ -11,7 +11,6 @@ import {
   Redirect,
   Link
 } from "react-router-dom";
-import AddPost from "../../addpost/AddPost";
 
 class Homenav extends Component {
   

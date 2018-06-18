@@ -14,7 +14,7 @@ import Register from "./auth/register/Register"
 import Settings from "./sidebar/settings/Settings"
 import apiURL from "./DB"
 import EditCategory from "./home/homenav/editcategory/EditCategory"
-import AddNewImagePost from "./home/homenav/addnewpost/AddNewImagePost";
+import AddNewImagePost from "./home/homenav/addnewimagepost/AddNewImagePost"
 
 class App extends Component {
   state = {

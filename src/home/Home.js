@@ -18,7 +18,9 @@ class Home extends Component {
         {this.props.categories.map((category) => {
           return (
             <div className="notebook" key={category[1]} >
-              <Homenav categories={category}/>
+              <Homenav 
+              currentUserFamilyId={this.props.currentUserFamilyId}
+              categories={category}/>
             </div>
           );
         })}

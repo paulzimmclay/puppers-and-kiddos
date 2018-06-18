@@ -8,29 +8,39 @@ class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      posts: [1, 2, 3]
+      posts: []
      }
   }
 
-// getGalleryUrl = () => {
-//   if (this.props.match.params.family !== "any" && ) {
-//     return 
-//   } else if (true) {
-//     return 
-//   } else {
-//     return 
-//   }
-// }
+// Wrap component did mount in function, call for both cdm, cdu
 
-//   componentDidMount() {
-    
-//   }
+postFinder = () => {
+  let apiPosts = ""
+  if (this.props.match.params.family === "all" && this.props.match.params.category === "all") {
+    apiPosts = "posts"
+  } else if (this.props.match.params.category === "all"){
+    apiPosts = `posts?family=${this.props.match.params.family}`
+  } else {
+    apiPosts = `posts?family=${this.props.match.params.family}&category=${this.props.match.params.category}`
+  }
+  fetch(`${apiURL}/${apiPosts}`)
+  .then(r => r.json())
+  .then(r => {
+      this.setState({
+      posts: r
+    })
+  })
+}
+
+componentDidMount() {
+  this.postFinder()
+}
 
   render() { 
     return ( 
       <div className="gallery__container">
         {this.state.posts.map((post) => {
-          return <GalleryPost post={post}/>
+          return <GalleryPost key={post.id} post={post}/>
         })}
       </div>
      )

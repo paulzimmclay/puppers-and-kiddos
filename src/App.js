@@ -110,7 +110,9 @@ class App extends Component {
               path="/home"
               render={props =>
                 this.state.currentUserId ? (
-                  <Home categories={this.state.categories} />
+                  <Home 
+                  currentUserFamilyId={this.state.currentUserFamilyId}
+                  categories={this.state.categories} />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
                 )
@@ -122,6 +124,7 @@ class App extends Component {
                 this.state.currentUserId ? (
                   <Gallery
                     {...props}
+                    key={Date.now()}
                     currentUserFamilyId={this.state.currentUserFamilyId}
                   />
                 ) : (
@@ -147,7 +150,7 @@ class App extends Component {
               render={props =>
                 this.state.currentUserId ? (
                   <EditCategory
-                    {...props}
+                    // {...props}
                     currentUserFamilyId={this.state.currentUserFamilyId}
                     categoryUpdate={this.categoryUpdate}
                     deleteCategory={this.deleteCategory}

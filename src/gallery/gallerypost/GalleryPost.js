@@ -4,7 +4,9 @@ import './GalleryPost.css'
 class GalleryPost extends Component {
   render() { 
     return ( 
-      <div className="item">{this.props.post}</div>
+      <div className="item" key={this.props.key}>
+      {this.props.post.caption}
+      </div>
      )
   }
 }

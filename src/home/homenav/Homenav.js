@@ -16,14 +16,17 @@ class Homenav extends Component {
   
   categoryIdUrl = "/editcategory/" + this.props.categories[1]
   addImagePostUrl = "/addnewimagepost/" + this.props.categories[1]
-  addStoryPostUrl = "/addnewimagepost/" + this.props.categories[1]
-  viewCateogryPostUrl = "/addnewimagepost/" + this.props.categories[1]
+  addStoryPostUrl = "/addnewstorypost/" + this.props.categories[1]
+  viewCateogryPostUrl = "/viewcategory/" + this.props.categories[1]
   
   render() {
     return (
       <div className="homenav__container" key={this.props.key}>
         <h1 className="homenav__name">{this.props.categories[0]}</h1>
-        <Link to={this.addImagePostUrl} className="add homenav__button">Add New</Link>
+        <div className="homenav__button">
+        <Link to={this.addImagePostUrl} className="add">New Picture</Link>
+        <Link to={this.addStoryPostUrl} className="add">New Story</Link>
+        </div>
         <ViewCategoryPosts />
         <Link className="homenav__button homenav__edit" to={this.categoryIdUrl}>
           Edit

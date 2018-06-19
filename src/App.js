@@ -190,6 +190,7 @@ class App extends Component {
                   <AddNewStoryPost
                     {...props}
                     currentUserFamilyId={this.state.currentUserFamilyId}
+                    categories={this.state.categories}
                   />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />

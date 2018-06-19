@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import apiURL from '../../DB'
+import "./Login.css";
+import apiURL from "../../DB";
 
 class Login extends Component {
   state = {
@@ -45,29 +46,30 @@ class Login extends Component {
 
   render() {
     return (
-      // form that allows for login with exisitng email and password
-      // username field
-      // password field
-      // submit button
-      <form onSubmit={this.submitLoginForm}>
-        <h1 className="login__banner">Please Login:</h1>
+      <div className="login__container">
+        <form className="login__form" onSubmit={this.submitLoginForm}>
+          <h1 className="login__banner">Welcome to Puppers 'n' Kiddos!</h1>
+          <h2 className="login__banner">Please Login:</h2>
           <input
+            className="login__email"
             placeholder="Email"
             type="text"
             value={this.state.email}
             onChange={this.handleEmailChange}
           />
           <input
+            className="login__password"
             placeholder="Password"
             type="password"
             value={this.state.password}
             onChange={this.handlePasswordChange}
           />
-        <input type="submit" value="Submit" />
-        <Link to="/register">
-          <button className="register">Register</button>
-        </Link>
-      </form>
+          <input className="login__submit" type="submit" value="Submit" />
+          <Link to="/register">
+            <button className="login__register">Register</button>
+          </Link>
+        </form>
+      </div>
     );
   }
 }

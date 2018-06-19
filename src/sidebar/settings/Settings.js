@@ -6,6 +6,7 @@ import React, { Component } from "react"
 import "./Settings.css"
 import { withRouter } from "react-router-dom"
 import apiURL from '../../DB'
+import './Settings.css'
 
 class Settings extends Component {
   constructor(props) {
@@ -103,35 +104,35 @@ class Settings extends Component {
 
   render() {
     return (
-      <div className="formDiv">
-        <form onSubmit={this.handleSubmit} className="form-login">
-          <h1 className="h3 mb-3 font-weight-normal">
+      <div className="settings__container">
+        <form onSubmit={this.handleSubmit} className="settings__form">
+          <h1 className="settings__banner">
             Edit your user settings:
           </h1>
 
           <input
-            className="form-control"
+            className="settings__firstname"
             placeholder="First Name"
             type="text"
             value={this.state.firstname}
             onChange={this.firstnameChange}
           />
           <input
-            className="form-control"
+            className="settings__lastname"
             type="text"
             placeholder="Last name"
             value={this.state.lastname}
             onChange={this.lastnameChange}
           />
           <input
-            className="form-control"
+            className="settings__email"
             placeholder="Email"
             type="text"
             value={this.state.email}
             onChange={this.emailChange}
           />
           <input
-            className="form-control"
+            className="settings__password"
             placeholder="Password"
             type="password"
             value={this.state.password}
@@ -140,7 +141,7 @@ class Settings extends Component {
           <select
             value={this.state.family}
             onChange={this.familyChange}
-            className="form-control"
+            className="settings__family"
           >
             <option defaultValue="">Location:</option>
             <option value={0}>Zimmerman-Clayton (Nashville)</option>
@@ -151,6 +152,7 @@ class Settings extends Component {
             <option value={5}>Gordon</option>
           </select>
           <input
+          className="settings__submit"
             type="submit"
             value="Submit"
           />

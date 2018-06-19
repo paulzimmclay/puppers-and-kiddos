@@ -10,7 +10,7 @@
 
   display: grid;
   padding: 30px;
-  width: 100%;
+  width: 90%;
   max-width: var(--content-width);
 
   grid-template-columns: repeat(var(--columns), 1fr);

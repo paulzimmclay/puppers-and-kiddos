@@ -100,36 +100,36 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="formDiv">
-        <form onSubmit={this.handleSubmit} className="form-login">
-        <h1 className="h3 mb-3 font-weight-normal">Register to use Puppers 'n' Kiddos:</h1>
+      <div className="login__container">
+        <form onSubmit={this.handleSubmit} className="login__form">
+        <h1 className="login__banner">Register to use Puppers 'n' Kiddos:</h1>
             
-            <input className="form-control"
+            <input className="register__firstname"
             placeholder="First Name"
               type="text"
               value={this.state.firstname}
               onChange={this.firstnameChange}
             />
-            <input className="form-control"
+            <input className="register__lastname"
               type="text"
               placeholder="Last name"
               value={this.state.lastname}
               onChange={this.lastnameChange}
             />
-            <input className="form-control"
+            <input className="register__email"
               placeholder="Email"
               type="text"
               value={this.state.email}
               onChange={this.emailChange}
             />
-            <input className="form-control"
+            <input className="register__password"
             placeholder="Password"
               type="password"
               value={this.state.password}
               onChange={this.passwordChange}
             />
-            <select value={this.state.family} onChange={this.familyChange} className="form-control">
-              <option defaultValue="">Location:</option>
+            <select value={this.state.family} onChange={this.familyChange} className="register__family">
+              <option defaultValue="">Family:</option>
               <option value={0}>Zimmerman-Clayton (Nashville)</option>
               <option value={1}>Zimmerman-Clayton (New Providence)</option>
               <option value={2}>ZC/Pini</option>
@@ -137,10 +137,7 @@ class Register extends Component {
               <option value={4}>McKenzie</option>
               <option value={5}>Gordon</option>
             </select>
-          <input type="submit" value="Submit" className="btn btn-lg btn-info btn-block"/>
-          <div id="emailExistsAlert" className="emailexists">
-          <p>That email address already exists. Click here to log in.</p>
-        </div>
+          <input type="submit" value="Submit" className="register__submit"/>
         </form>
       </div>
     );

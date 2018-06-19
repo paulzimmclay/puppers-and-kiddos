@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './GalleryPost.css'
+import './GalleryStoryPost.css'
 
-class GalleryPost extends Component {
+class GalleryStoryPost extends Component {
   render() { 
     return ( 
       <div className="item" key={this.props.key}>
@@ -11,4 +11,4 @@ class GalleryPost extends Component {
   }
 }
  
-export default GalleryPost;
+export default GalleryStoryPost;

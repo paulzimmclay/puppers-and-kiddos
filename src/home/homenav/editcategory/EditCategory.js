@@ -10,8 +10,6 @@ class EditCategory extends Component {
     super(props);
     this.state = {
       category: "",
-      created: "",
-      childname: ""
     };
   }
 
@@ -42,13 +40,31 @@ class EditCategory extends Component {
     this.props.history.push("/");
   };
 
+  submitMyForm = event => {
+    event.preventDefault();
+    fetch(`${apiURL}/categorys/${this.props.match.params.categoryid}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        category: this.state.category,
+        family: this.props.currentUserFamilyId,
+        id: this.props.match.params.categoryid
+      })
+    }).then(() => {
+      this.props.categoryUpdate()
+      this.props.history.push("/");
+    });
+  };
+
 
   render() {
     return (
       <div className="editcategory__container">
         <form className="editcategory__form" onSubmit={this.submitMyForm}>
-          <label>
-            Name:
+          <label className="editcategory__banner">
+            Edit Category:
             <input
               className="editcategory__category"
               type="text"

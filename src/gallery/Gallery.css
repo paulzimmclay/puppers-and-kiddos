@@ -1,5 +1,5 @@
 .gallery__container {
-  --content-width: 90vw;
+  --content-width: 80vw;
   --gutter: 20px;
   --columns: 1;
 
@@ -22,18 +22,18 @@
 
 @media (min-width: 450px) {
   .gallery__container {
-    --columns: 2;
+    --columns: 1;
   }
 }
 
 @media (min-width: 750px) {
   .gallery__container {
-    --columns: 3;
+    --columns: 2;
   }
 }
 
 @media (min-width: 1200px) {
   .gallery__container {
-    --columns: 4;
+    --columns: 3;
   }
 }

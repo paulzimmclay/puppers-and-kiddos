@@ -1,6 +1,28 @@
-.item{
-  background-image: url('https://images.unsplash.com/photo-1484256017452-47f3e80eae7c?dpr=1&auto=format&fit=crop&w=2850&q=60&cs=tinysrgb');
-  background-size: cover;
-  background-position: center center;
-  background-color: whitesmoke;
+.galleryimagepost__container {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgb(232, 232, 232);
+}
+
+.galleryimagepost__imagecontainer {
+  border: 1px solid black;
+  max-height: 80%;
+  overflow: hidden;
+  display: block;
+  border-radius: 5px
+}
+
+.galleryimagepost__image {
+  width: 100%
+}
+
+.galleryimagepost__captioncontainer {
+  align-content: center;
+}
+
+.galleryimagepost__caption {
+  text-align: center;
+  max-height: 20%;
+  overflow: hidden;
 }

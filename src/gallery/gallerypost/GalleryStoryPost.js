@@ -4,8 +4,11 @@ import './GalleryStoryPost.css'
 class GalleryStoryPost extends Component {
   render() { 
     return ( 
-      <div className="item" key={this.props.key}>
-      {this.props.post.caption}
+      <div className="gallerystorypost__container">
+        
+        <div className="gallerystorypost__captioncontainer">
+          <h3 className="gallerystorypost__caption">{this.props.post.caption}</h3>
+        </div>
       </div>
      )
   }

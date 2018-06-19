@@ -21,14 +21,10 @@ class AddNewStoryPost extends Component {
   // Need to pass categories from app.js
 
   getCategoryName = () => {
-    // console.log(this.props.match.params.categoryid, "category id")
-    // console.log(this.props.categories)
-    
     let childArray = this.props.categories.find((category) => {
       console.log(category[1])
       return category[1] === +this.props.match.params.categoryid
     })
-    // console.log(childArray)
     this.setState({
       childname: childArray[0]
     })

@@ -8,12 +8,30 @@
 
 .sidebar__button {
   width: 100%;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 15px;
   display: grid;
   justify-content: center;
   align-items: center;
   border: 5px solid rgba(0, 0, 0, 0.03);
   border-radius: 3px;
   font-size: 35px;
-  background-color: lightblue
+  background-color: lightblue;
+  text-decoration: none;
+}
+
+.sidebar__link {
+  color: black;
+  text-decoration: none;
+}
+
+.sidebar__viewall_container {
+  display: grid;
+}
+
+.sidebar__viewall_button {
+  font-size: 28px;
+  height: 1fr;
+  margin-top: 10px
 }

@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import apiURL from '../../DB'
+import './AddCategory.css'
 
 class AddCategory extends Component {
   constructor(props) {
@@ -37,25 +38,29 @@ class AddCategory extends Component {
 
   render() {
     return (
-      <form onSubmit={this.submitMyForm}>
-        <label>
-          Name:
+      <div className="addcategory__container">
+      <form className="addcategory__form" onSubmit={this.submitMyForm}>
+        <h2 className="addcategory__banner">Add a new category here:</h2>
+        <label className="addcategory__banner">
+          Name of kid or pet:
           <input
+          className="addcategory__category"
             type="text"
             value={this.state.category}
             onChange={this.handleCategoryChange}
           />
         </label>
-        <label>
+        {/* <label>
           Image:
           <input
             type="text"
             value={this.state.image}
             onChange={this.handleImageChange}
           />
-        </label>
-        <input type="submit" value="Submit" />
+        </label> */}
+        <input className="addcategory__submit" type="submit" value="Submit" />
       </form>
+      </div>
     );
   }
 }

@@ -20,7 +20,7 @@ class AddNewStoryPost extends Component {
   // Find name of child by getting ID from URL, then checking against categories in props from app
   // Need to pass categories from app.js
 
-  getChildName = () => {
+  getCategoryName = () => {
     // console.log(this.props.match.params.categoryid, "category id")
     // console.log(this.props.categories)
     
@@ -53,7 +53,7 @@ class AddNewStoryPost extends Component {
   };
 
 componentDidMount() {
-  this.getChildName()
+  this.getCategoryName()
 }
 
   render() {

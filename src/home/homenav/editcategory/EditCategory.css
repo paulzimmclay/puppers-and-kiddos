@@ -1,18 +1,18 @@
-.addcategory__container {
+.editcategory__container {
   display: grid;
   grid-template-columns: .5fr 1fr .5fr;
 }
 
-.addcategory__form {
+.editcategory__form {
   margin-top: 50px;
   grid-column-start: 2
 }
 
-.addcategory__banner {
+.editcategory__banner {
   color: rgb(24, 82, 118)
 }
 
-input.addcategory__category {
+input.editcategory__category {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -20,7 +20,7 @@ input.addcategory__category {
   font-size: 1.2em
 }
 
-input.addcategory__submit {
+input.editcategory__submit, button.editcategory__delete {
   background-color: lightblue;
   border: none;
   color: black;
@@ -29,4 +29,8 @@ input.addcategory__submit {
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+button.editcategory__delete {
+  background-color: red
 }

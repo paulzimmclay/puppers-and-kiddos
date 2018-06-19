@@ -15,22 +15,21 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="sidebar__container">
-        <Link to="/home" className="sidebar__button sidebar__home_button">
+        <Link to="/home" className="sidebar__button sidebar__home_button sidebar__link">
           Home
         </Link>
-        <Link to="/addcategory" className="sidebar__button sidebar__add_button">
+        <Link to="/addcategory" className="sidebar__button sidebar__add_button sidebar__link">
           Add
         </Link>
-        <div className="sidebar__button sidebar__viewall_button">
-          {console.log(`${this.props.currentUserFamilyId}`)}
-          <Link to="/gallery/all/all">All</Link>
-          <Link to={`/gallery/${this.props.currentUserFamilyId}/all`}>
-            Family
+        <div className="sidebar__viewall_container">
+          <Link className="sidebar__viewall_button sidebar__link sidebar__button" to={`/gallery/${this.props.currentUserFamilyId}/all`}>
+            This Family
           </Link>
+          <Link className="sidebar__viewall_button sidebar__link sidebar__button" to="/gallery/all/all">All Posts</Link>
         </div>
         <Link
           to="/settings"
-          className="sidebar__button sidebar__settings_button"
+          className="sidebar__button sidebar__settings_button sidebar__link"
         >
           Settings
         </Link>

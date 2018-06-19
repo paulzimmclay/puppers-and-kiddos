@@ -154,6 +154,7 @@ class App extends Component {
                     currentUserFamilyId={this.state.currentUserFamilyId}
                     categoryUpdate={this.categoryUpdate}
                     deleteCategory={this.deleteCategory}
+                    categories={this.state.categories}
                   />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />

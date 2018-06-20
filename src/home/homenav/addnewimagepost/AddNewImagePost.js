@@ -1,14 +1,14 @@
 // Add New Image Post will allow a user to add a new image for a single category
 
 import React, { Component } from "react";
-import apiURL from '../../../DB'
+import apiURL from "../../../DB";
 
 class AddNewImagePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
       caption: "",
-      image: "",
+      image: ""
     };
   }
 
@@ -17,7 +17,6 @@ class AddNewImagePost extends Component {
   "text": "My son at work",
   "created": "date",
   "user": "1" */
-
 
   handleCaptionChange = event => {
     this.setState({ caption: event.target.value });
@@ -39,11 +38,9 @@ class AddNewImagePost extends Component {
         image: this.state.image,
         family: this.props.currentUserFamilyId,
         category: +this.props.match.params.categoryid,
-        date: new Date() 
-
+        date: new Date()
       })
-    }).then((r) => console.log(r));
-    
+    }).then(r => console.log(r));
   };
 
   render() {
@@ -55,6 +52,13 @@ class AddNewImagePost extends Component {
             type="text"
             value={this.state.image}
             onChange={this.handleImageChange}
+          />
+          <input
+            name="file"
+            type="file"
+            class="file-upload"
+            data-cloudinary-field="image_id"
+            data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
           />
         </label>
         <label>

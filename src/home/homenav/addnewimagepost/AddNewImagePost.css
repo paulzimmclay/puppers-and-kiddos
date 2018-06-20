@@ -1,20 +1,18 @@
-.story__container {
+.image__container {
   display: grid;
   grid-template-columns: .5fr 1fr .5fr;
 }
 
-.story__form {
+.image__form {
   margin-top: 50px;
   grid-column-start: 2
 }
 
-.story__banner {
+.image__banner {
   color: rgb(24, 82, 118)
 }
 
-
-input.story__submit, 
-button.story__logout {
+input.image__submit {
   background-color: lightblue;
   border: none;
   color: black;
@@ -23,4 +21,19 @@ button.story__logout {
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+  display: block;
+}
+
+input.image__caption {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 1.2em
+}
+
+.image__dropzone {
+  width: 100%;
+  height: 200px;
+  border: 1px dashed black;
 }

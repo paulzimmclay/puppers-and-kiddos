@@ -4,8 +4,12 @@ import React, { Component } from "react";
 import apiURL from "../../../DB";
 import Dropzone from "react-dropzone";
 import request from "superagent";
+import "./AddNewImagePost.css";
 
+// Cloudinary settings:
+// Preset corresponds to cloudinary preset settings, specifically autorotate and resizing on upload
 const CLOUDINARY_UPLOAD_PRESET = "tychdmns";
+// Endpoint to send pictures when uploaded
 const CLOUDINARY_UPLOAD_URL =
   "https://api.cloudinary.com/v1_1/df1kli6hv/upload";
 
@@ -14,18 +18,17 @@ class AddNewImagePost extends Component {
     super(props);
     this.state = {
       caption: "",
-      image: "",
       uploadedFileCloudinaryUrl: ""
     };
   }
 
-  onImageDrop(files) {
+  onImageDrop = files => {
     this.setState({
       uploadedFile: files[0]
     });
 
     this.handleImageUpload(files[0]);
-  }
+  };
 
   handleImageUpload(file) {
     let upload = request
@@ -37,7 +40,7 @@ class AddNewImagePost extends Component {
       if (err) {
         console.error(err);
       }
-
+      // Returns with url of image that is set to storage, uploaded to DB in submitImagePostForm()
       if (response.body.secure_url !== "") {
         this.setState({
           uploadedFileCloudinaryUrl: response.body.secure_url
@@ -54,9 +57,6 @@ class AddNewImagePost extends Component {
 
   handleCaptionChange = event => {
     this.setState({ caption: event.target.value });
-  };
-  handleImageChange = event => {
-    this.setState({ image: event.target.value });
   };
 
   submitImagePostForm = event => {
@@ -79,40 +79,30 @@ class AddNewImagePost extends Component {
 
   render() {
     return (
-      <div className="addnewimagepost__container">
-        <form onSubmit={this.submitImagePostForm}>
-          <label>
-            Image:
-            <input
-              type="text"
-              value={this.state.image}
-              onChange={this.handleImageChange}
-            />
-            <Dropzone
-              multiple={false}
-              accept="image/*"
-              onDrop={this.onImageDrop.bind(this)}
-            >
-              <p>Drop an image or click to select a file to upload.</p>
-            </Dropzone>
-          </label>
-          <label>
-            Caption:
-            <input
-              type="text"
-              value={this.state.caption}
-              onChange={this.handleCaptionChange}
-            />
-          </label>
-          <input type="submit" value="Submit" />
+      <div className="image__container">
+        <form className="image__form" onSubmit={this.submitImagePostForm}>
+          {/* Renders a Div that allows for drag/drop of a single image file */}
+          <h3 className="image__banner">
+            Drop an image below, or click the box to select a file to upload.
+          </h3>
+          <Dropzone
+          
+            className="image__dropzone"
+            multiple={false}
+            accept="image/*"
+            onDrop={this.onImageDrop}
+          />
+
+          <input
+            type="text"
+            className="image__caption"
+            placeholder="Give your picture a caption!"
+            value={this.state.caption}
+            onChange={this.handleCaptionChange}
+          />
+          <input className="image__submit" type="submit" value="Submit" />
+          <img width="100%" src={this.state.uploadedFileCloudinaryUrl} />
         </form>
-        <div>
-        {this.state.uploadedFileCloudinaryUrl === '' ? null :
-        <div>
-          <p>{this.state.uploadedFile.name}</p>
-          <img src={this.state.uploadedFileCloudinaryUrl} />
-        </div>}
-      </div>
       </div>
     );
   }

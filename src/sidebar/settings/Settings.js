@@ -79,7 +79,6 @@ class Settings extends Component {
       family: +this.state.family
     }
 
-    console.log(changedInfo)
     fetch(`${apiURL}/users/${userId}`, {
       method: 'PUT',
       body: JSON.stringify(changedInfo),
@@ -97,6 +96,7 @@ class Settings extends Component {
   logout = () => {
     // remove local storage
     localStorage.removeItem("userId")
+    this.props.logoutStateChange()
       this.props.history.push("/")
     // redirect to /
     

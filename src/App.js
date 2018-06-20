@@ -59,6 +59,12 @@ class App extends Component {
       });
   };
 
+logoutStateChange = () => {
+  this.setState({
+    currentUserId: 0
+  })
+}
+
   componentDidMount() {
     this.userLogin();
   }
@@ -165,7 +171,9 @@ class App extends Component {
               path="/settings"
               render={props =>
                 this.state.currentUserId ? (
-                  <Settings />
+                  <Settings 
+                  logoutStateChange={this.logoutStateChange}
+                  />
                 ) : (
                   <Redirect to={{ pathname: "/" }} />
                 )

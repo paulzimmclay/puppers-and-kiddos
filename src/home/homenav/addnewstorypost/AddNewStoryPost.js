@@ -41,7 +41,6 @@ class AddNewStoryPost extends Component {
         family: this.props.currentUserFamilyId,
         caption: this.state.caption,
         image: "",
-        family: this.props.currentUserFamilyId,
         category: +this.props.match.params.categoryid,
         date: new Date()
       })

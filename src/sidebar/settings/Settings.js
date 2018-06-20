@@ -23,7 +23,7 @@ class Settings extends Component {
   
   
   componentDidMount() {
-    const userId = parseInt(localStorage.getItem("userId"))
+    const userId = parseInt(localStorage.getItem("userId"), 10)
     // grab user info, set to state
     fetch(`${apiURL}/users?id=${userId}`)
       .then(r => r.json())
@@ -62,14 +62,8 @@ class Settings extends Component {
     // Prevent form from clearing every time submitted
     event.preventDefault()
     // Get userId from local storage
-    const userId = parseInt(localStorage.getItem("userId"))
+    const userId = parseInt(localStorage.getItem("userId"), 10)
     // Store submitted values into variables
-    
-    const submittedFirstname = this.state.firstname
-    const submittedLastname = this.state.lastname
-    const submittedEmail = this.state.email
-    const submittedPassword = this.state.password
-    const submittedFamily = this.state.family
 
     const changedInfo = {
       firstname: this.state.firstname,
@@ -96,9 +90,10 @@ class Settings extends Component {
   logout = () => {
     // remove local storage
     localStorage.removeItem("userId")
+    // set app.js state for current user id to 0
     this.props.logoutStateChange()
-      this.props.history.push("/")
     // redirect to /
+      this.props.history.push("/")
     
   }
 

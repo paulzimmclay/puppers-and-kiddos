@@ -2,7 +2,6 @@
 // State will be current user and current family
 
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Sidebar from "./sidebar/Sidebar";
 import Home from "./home/Home";
@@ -27,7 +26,7 @@ class App extends Component {
   // Handles user login. Used as props on Login.js.
   userLogin = () => {
     // Get ID from local storage (set on Login.js), set to state
-    const userId = parseInt(localStorage.getItem("userId"));
+    const userId = parseInt(localStorage.getItem("userId"), 10);
     this.setState({
       currentUserId: userId
     });

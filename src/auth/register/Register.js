@@ -49,7 +49,6 @@ class Register extends Component {
     const submittedLastname = this.state.lastname;
     const submittedEmail = this.state.email;
     const submittedPassword = this.state.password;
-    const submittedImageUrl = this.state.image;
     const submittedFamily = this.state.family;
 
     fetch(`${apiURL}/users?email=${submittedEmail}`)
@@ -66,7 +65,7 @@ class Register extends Component {
 
           // if doesn't exist, add to user db and forward to login page, passing email/password
         } else {
-          fetch("${apiURL}/users", {
+          fetch(`${apiURL}/users`, {
             method: "POST",
             headers: {
               Accept: "application/json",

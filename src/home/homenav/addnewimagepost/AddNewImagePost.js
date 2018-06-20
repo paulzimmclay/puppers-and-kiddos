@@ -70,7 +70,6 @@ class AddNewImagePost extends Component {
         family: this.props.currentUserFamilyId,
         caption: this.state.caption,
         image: this.state.uploadedFileCloudinaryUrl,
-        family: this.props.currentUserFamilyId,
         category: +this.props.match.params.categoryid,
         date: new Date()
       })
@@ -101,7 +100,7 @@ class AddNewImagePost extends Component {
             onChange={this.handleCaptionChange}
           />
           <input className="image__submit" type="submit" value="Submit" />
-          <img width="100%" src={this.state.uploadedFileCloudinaryUrl} />
+          <img alt="example" width="100%" src={this.state.uploadedFileCloudinaryUrl} />
         </form>
       </div>
     );

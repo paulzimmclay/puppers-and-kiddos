@@ -8,6 +8,7 @@ class GalleryStoryPost extends Component {
         
         <div className="gallerystorypost__captioncontainer">
           <h3 className="gallerystorypost__caption">{this.props.post.caption}</h3>
+          <h5 className="gallerystorypost__date">Posted on {this.props.post.date}</h5>
         </div>
       </div>
      )

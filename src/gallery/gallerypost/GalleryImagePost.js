@@ -10,6 +10,7 @@ class GalleryImagePost extends Component {
         </div>
         <div className="galleryimagepost__captioncontainer">
           <h3 className="galleryimagepost__caption">{this.props.post.caption}</h3>
+          <h5 className="galleryimagepost__date">Posted on {this.props.post.date}</h5>
         </div>
       </div>
     );

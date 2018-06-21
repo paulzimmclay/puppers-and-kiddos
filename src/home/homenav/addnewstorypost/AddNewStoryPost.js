@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import apiURL from "../../../DB";
 import "./AddNewStoryPost.css";
 import { withRouter } from "react-router-dom";
+import moment from "moment"
 
 class AddNewStoryPost extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class AddNewStoryPost extends Component {
         caption: this.state.caption,
         image: "",
         category: +this.props.match.params.categoryid,
-        date: new Date()
+        date: moment().format("MMMM D, YYYY")
       })
     }).then(() => this.props.history.push("/"));
   };
@@ -70,4 +71,4 @@ componentDidMount() {
   }
 }
 
-export default AddNewStoryPost;
+export default withRouter(AddNewStoryPost);

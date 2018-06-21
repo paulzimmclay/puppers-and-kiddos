@@ -6,6 +6,7 @@ import Dropzone from "react-dropzone";
 import request from "superagent";
 import "./AddNewImagePost.css";
 import { withRouter } from "react-router-dom";
+import moment from "moment"
 
 // Cloudinary settings:
 // Preset corresponds to cloudinary preset settings, specifically autorotate and resizing on upload
@@ -50,12 +51,6 @@ class AddNewImagePost extends Component {
     });
   }
 
-  /* "child": 1,
-  "image": "http://stjamesjc.org/wp-content/uploads/2012/05/St.-James-the-Greater-400x498.jpg",
-  "text": "My son at work",
-  "created": "date",
-  "user": "1" */
-
   handleCaptionChange = event => {
     this.setState({ caption: event.target.value });
   };
@@ -72,7 +67,7 @@ class AddNewImagePost extends Component {
         caption: this.state.caption,
         image: this.state.uploadedFileCloudinaryUrl,
         category: +this.props.match.params.categoryid,
-        date: new Date()
+        date: moment().format("MMMM D, YYYY")
       })
     }).then(() => this.props.history.push("/"));
   };

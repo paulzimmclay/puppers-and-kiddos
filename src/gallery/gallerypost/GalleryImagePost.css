@@ -20,10 +20,17 @@
 
 .galleryimagepost__captioncontainer {
   align-content: center;
+  max-height: 20%;
 }
 
 .galleryimagepost__caption {
   text-align: center;
-  max-height: 20%;
   overflow: hidden;
+}
+
+.galleryimagepost__date {
+  color: lightslategray;
+  font-size: .8em;
+  font-weight: 100;
+  text-align: center;
 }

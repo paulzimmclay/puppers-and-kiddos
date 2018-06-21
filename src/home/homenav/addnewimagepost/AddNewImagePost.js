@@ -5,6 +5,7 @@ import apiURL from "../../../DB";
 import Dropzone from "react-dropzone";
 import request from "superagent";
 import "./AddNewImagePost.css";
+import { withRouter } from "react-router-dom";
 
 // Cloudinary settings:
 // Preset corresponds to cloudinary preset settings, specifically autorotate and resizing on upload
@@ -73,7 +74,7 @@ class AddNewImagePost extends Component {
         category: +this.props.match.params.categoryid,
         date: new Date()
       })
-    }).then(r => console.log(r));
+    }).then(() => this.props.history.push("/"));
   };
 
   render() {
@@ -107,4 +108,4 @@ class AddNewImagePost extends Component {
   }
 }
 
-export default AddNewImagePost;
+export default withRouter(AddNewImagePost)

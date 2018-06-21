@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import apiURL from "../../../DB";
 import "./AddNewStoryPost.css";
+import { withRouter } from "react-router-dom";
 
 class AddNewStoryPost extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class AddNewStoryPost extends Component {
         category: +this.props.match.params.categoryid,
         date: new Date()
       })
-    }).then(r => console.log(r));
+    }).then(() => this.props.history.push("/"));
   };
 
 componentDidMount() {

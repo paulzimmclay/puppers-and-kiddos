@@ -45,7 +45,18 @@ class Gallery extends Component {
     return (
       <div className="gallery__container">
         {this.state.posts.map(post => {
-          return (post.image ? <GalleryImagePost key={post.id} post={post}/> : <GalleryStoryPost key={post.id} post={post} />)
+          return (post.image ? <GalleryImagePost 
+            key={post.id} 
+            post={post}
+            family={this.props.match.params.family}
+            category={this.props.match.params.category}
+            /> : 
+            <GalleryStoryPost 
+            key={post.id} 
+            post={post}
+            family={this.props.match.params.family}
+            category={this.props.match.params.category}
+            />)
           })}
       </div>
     );

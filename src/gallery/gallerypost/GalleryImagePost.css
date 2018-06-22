@@ -6,10 +6,11 @@
 }
 
 .galleryimagepost__imagecontainer {
-  max-height: 80%;
+  max-height: 78%;
   overflow: hidden;
   display: inline-block;
   border-radius: 5px;
+  text-decoration: none;
 }
 
 .galleryimagepost__image {
@@ -20,12 +21,15 @@
 
 .galleryimagepost__captioncontainer {
   align-content: center;
-  max-height: 20%;
+  height: 18%;
+  text-decoration: none;
 }
 
 .galleryimagepost__caption {
   text-align: center;
   overflow: hidden;
+  text-decoration: none;
+  color: black;
 }
 
 .galleryimagepost__date {
@@ -33,4 +37,8 @@
   font-size: .8em;
   font-weight: 100;
   text-align: center;
+}
+
+a {
+  text-decoration: none;
 }

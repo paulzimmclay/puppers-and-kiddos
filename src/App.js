@@ -15,6 +15,7 @@ import apiURL from "./DB";
 import EditCategory from "./home/homenav/editcategory/EditCategory";
 import AddNewImagePost from "./home/homenav/addnewimagepost/AddNewImagePost";
 import AddNewStoryPost from "./home/homenav/addnewstorypost/AddNewStoryPost";
+import PostViewerContainer from './postviewer/PostViewerContainer'
 
 class App extends Component {
   state = {
@@ -196,6 +197,20 @@ logoutStateChange = () => {
               render={props =>
                 this.state.currentUserId ? (
                   <AddNewStoryPost
+                    {...props}
+                    currentUserFamilyId={this.state.currentUserFamilyId}
+                    categories={this.state.categories}
+                  />
+                ) : (
+                  <Redirect to={{ pathname: "/" }} />
+                )
+              }
+            />
+            <Route
+              path="/viewer/:family/:category/:post"
+              render={props =>
+                this.state.currentUserId ? (
+                  <PostViewerContainer
                     {...props}
                     currentUserFamilyId={this.state.currentUserFamilyId}
                     categories={this.state.categories}

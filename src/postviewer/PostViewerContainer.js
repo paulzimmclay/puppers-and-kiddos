@@ -8,6 +8,9 @@
 
 import React, { Component } from "react";
 import apiURL from "../DB";
+import PostViewer from "./PostViewer";
+import "./PostViewerContainer.css";
+import GalleryImagePost from "../gallery/gallerypost/GalleryImagePost";
 
 class PostViewerContainer extends Component {
   constructor(props) {
@@ -42,12 +45,12 @@ class PostViewerContainer extends Component {
         this.setState({
           posts: r
         });
-      })
-      // .then(r => {
-      //   this.setState({
-      //     currentPost: this.state.posts[+this.props.match.params.post]
-      //   });
-      // });
+      });
+    // .then(r => {
+    //   this.setState({
+    //     currentPost: this.state.posts[+this.props.match.params.post]
+    //   });
+    // });
   };
 
   // displayedPostFinder = id => this.state.posts[id]
@@ -56,20 +59,17 @@ class PostViewerContainer extends Component {
     return (
       //Grid for Pictures, plus arrows for nav
       <div className="postviewercontainer__container">
-        {/* <PostViewer /> */}
+        {/*  */}
         {/* use current ID (this.props.match.params.id) to find curent post by ID */}
         {this.state.posts
-        .filter(item => {
-          console.log(item.id, this.props.match.params.post)
-          return +item.id === +this.props.match.params.post;
-
-        })
-        .map(post => {
-          return <p>{post.caption}</p>
-        })
-      }
-
-        {/* <p className="test">test</p> */}
+          .filter(item => {
+            console.log(item.id, this.props.match.params.post);
+            return +item.id === +this.props.match.params.post;
+          })
+          .map(post => {
+            // return <PostViewer className="postviewer__component" post={post} />;
+            return <GalleryImagePost className="gallerypostviewer__container" post={post}/>
+          })}
       </div>
     );
   }

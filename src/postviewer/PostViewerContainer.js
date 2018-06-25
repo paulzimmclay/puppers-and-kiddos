@@ -7,7 +7,7 @@
 // Arrow keys to go forward and back, escape returns to gallery
 
 import React, { Component } from "react";
-import apiURL from '../DB'
+import apiURL from "../DB";
 
 class PostViewerContainer extends Component {
   constructor(props) {
@@ -17,9 +17,9 @@ class PostViewerContainer extends Component {
       currentPost: 0
     };
   }
- 
-  componentDidMount() {
 
+  componentDidMount() {
+    this.postFinder();
   }
 
   postFinder = () => {
@@ -42,16 +42,34 @@ class PostViewerContainer extends Component {
         this.setState({
           posts: r
         });
-      });
+      })
+      // .then(r => {
+      //   this.setState({
+      //     currentPost: this.state.posts[+this.props.match.params.post]
+      //   });
+      // });
   };
 
+  // displayedPostFinder = id => this.state.posts[id]
 
   render() {
     return (
       //Grid for Pictures, plus arrows for nav
       <div className="postviewercontainer__container">
         {/* <PostViewer /> */}
-        <p className="thing">hi</p>
+        {/* use current ID (this.props.match.params.id) to find curent post by ID */}
+        {this.state.posts
+        .filter(item => {
+          console.log(item.id, this.props.match.params.post)
+          return +item.id === +this.props.match.params.post;
+
+        })
+        .map(post => {
+          return <p>{post.caption}</p>
+        })
+      }
+
+        {/* <p className="test">test</p> */}
       </div>
     );
   }

@@ -1,11 +1,9 @@
 .postviewercontainer__container {
-  margin: 10px;
   height: 100vh;
+  max-height: 100vh;
   display: grid;
   grid-template-columns: 0.25fr 3fr 0.25fr;
-}
-
-.gallerypostviewer__container {
-  height: 100vh;
-  grid-column-start: 2;
+  background-color: black;
+  /* background-color: grey; */
+  /* border: 1px red dotted; */
 }

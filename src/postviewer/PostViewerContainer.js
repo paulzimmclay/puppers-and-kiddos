@@ -67,8 +67,8 @@ class PostViewerContainer extends Component {
             return +item.id === +this.props.match.params.post;
           })
           .map(post => {
-            // return <PostViewer className="postviewer__component" post={post} />;
-            return <GalleryImagePost className="gallerypostviewer__container" post={post}/>
+            return <PostViewer className="postviewer__component" post={post} />;
+            // return <GalleryImagePost className="gallerypostviewer__container" post={post}/>
           })}
       </div>
     );

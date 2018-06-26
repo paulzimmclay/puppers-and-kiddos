@@ -2,6 +2,7 @@
 // State will be current user and current family
 
 import React, { Component } from "react";
+import "normalize.css"
 import "./App.css";
 import Sidebar from "./sidebar/Sidebar";
 import Home from "./home/Home";

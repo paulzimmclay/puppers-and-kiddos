@@ -12,7 +12,7 @@ class PostViewer extends Component {
           />
         </div>
         <div className="gallerypostviewer__captioncontainer">
-          <p className="gallerypostviewer__caption">{this.props.post.caption}</p>
+<span class="gallerypostviewer__caption">{this.props.post.caption}</span> <span class="gallerypostviewer__date">Posted on {this.props.post.date}</span>
         </div>
       </div>
     );

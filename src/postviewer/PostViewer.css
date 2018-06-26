@@ -6,7 +6,7 @@
 .gallerypostviewer__imagecontainer {
   /* border: 1px green dotted; */
   max-height: 90%;
-  height: 90vh;
+  height: 85vh;
   margin: 30px;
 }
 
@@ -19,7 +19,17 @@
   margin-right: auto;
 }
 
+.gallerypostviewer__captioncontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
 .gallerypostviewer__caption {
   color: white;
-  text-align: center;
+  font-size: 30px;
+}
+
+.gallerypostviewer__date {
+  color: rgb(130, 130, 130);
 }

@@ -11,6 +11,7 @@ import apiURL from "../DB";
 import PostViewer from "./PostViewer";
 import "./PostViewerContainer.css";
 import GalleryImagePost from "../gallery/gallerypost/GalleryImagePost";
+import StoryPostViewer from "./StoryPostViewer";
 
 class PostViewerContainer extends Component {
   constructor(props) {
@@ -63,11 +64,14 @@ class PostViewerContainer extends Component {
         {/* use current ID (this.props.match.params.id) to find curent post by ID */}
         {this.state.posts
           .filter(item => {
-            console.log(item.id, this.props.match.params.post);
             return +item.id === +this.props.match.params.post;
           })
           .map(post => {
-            return <PostViewer className="postviewer__component" post={post} />;
+            return post.image ? (
+              <PostViewer className="postviewer__component" post={post} />
+            ) : (
+              <StoryPostViewer post={post} />
+            );
             // return <GalleryImagePost className="gallerypostviewer__container" post={post}/>
           })}
       </div>

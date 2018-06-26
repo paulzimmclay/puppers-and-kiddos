@@ -1,0 +1,17 @@
+.storypostviewer__container {
+  grid-column-start: 2;
+  /* border: 1px blue dotted; */
+  margin: 50px;
+}
+
+.storypostviewer__caption {
+  color: white;
+  text-align: left;
+  font-size: 50px;
+}
+
+.storypostviewer__date {
+  color: rgb(130, 130, 130);
+  display: block;
+}
+

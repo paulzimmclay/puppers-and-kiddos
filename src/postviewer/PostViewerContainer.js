@@ -46,15 +46,11 @@ class PostViewerContainer extends Component {
         this.setState({
           posts: r
         });
-      });
-    // .then(r => {
-    //   this.setState({
-    //     currentPost: this.state.posts[+this.props.match.params.post]
-    //   });
-    // });
+      })
   };
 
-  // displayedPostFinder = id => this.state.posts[id]
+// set array index of current post (from url) to current post to allow for cycling through posts
+
 
   render() {
     return (
@@ -72,7 +68,6 @@ class PostViewerContainer extends Component {
             ) : (
               <StoryPostViewer post={post} />
             );
-            // return <GalleryImagePost className="gallerypostviewer__container" post={post}/>
           })}
       </div>
     );

@@ -3,6 +3,7 @@
   padding: 10px;
   border-radius: 5px;
   background-color: rgb(232, 232, 232);
+  overflow: hidden;
 }
 
 .galleryimagepost__imagecontainer {
@@ -30,6 +31,7 @@
   overflow: hidden;
   text-decoration: none;
   color: black;
+  padding: 0px
 }
 
 .galleryimagepost__date {

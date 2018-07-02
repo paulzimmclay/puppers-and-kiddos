@@ -50,7 +50,7 @@ class Gallery extends Component {
             post={post}
             family={this.props.match.params.family}
             category={this.props.match.params.category}
-            /> : 
+            /> :
             <GalleryStoryPost 
             key={post.id} 
             post={post}

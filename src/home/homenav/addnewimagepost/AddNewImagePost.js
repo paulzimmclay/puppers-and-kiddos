@@ -6,7 +6,7 @@ import Dropzone from "react-dropzone";
 import request from "superagent";
 import "./AddNewImagePost.css";
 import { withRouter } from "react-router-dom";
-import moment from "moment"
+import moment from "moment";
 
 // Cloudinary settings:
 // Preset corresponds to cloudinary preset settings, specifically autorotate and resizing on upload
@@ -81,7 +81,6 @@ class AddNewImagePost extends Component {
             Drop an image below, or click the box to select a file to upload.
           </h3>
           <Dropzone
-          
             className="image__dropzone"
             multiple={false}
             accept="image/*"
@@ -95,12 +94,24 @@ class AddNewImagePost extends Component {
             value={this.state.caption}
             onChange={this.handleCaptionChange}
           />
-          <input className="image__submit" type="submit" value="Submit" />
-          <img alt="example" width="100%" src={this.state.uploadedFileCloudinaryUrl} />
+          {this.state.uploadedFileCloudinaryUrl ? (
+            <div className="wrapper">
+              <img
+                alt="your image preview:"
+                width="100%"
+                src={this.state.uploadedFileCloudinaryUrl}
+              />
+              <input className="image__submit" type="submit" value="Submit" />
+            </div>
+          ) : (
+            <p className="image__placeholder">
+              Your image preview will display here
+            </p>
+          )}
         </form>
       </div>
     );
   }
 }
 
-export default withRouter(AddNewImagePost)
+export default withRouter(AddNewImagePost);

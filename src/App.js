@@ -67,7 +67,9 @@ logoutStateChange = () => {
 }
 
   componentDidMount() {
-    this.userLogin();
+    if (localStorage.getItem("userId")) {
+      this.userLogin();
+    }
   }
 
   deleteCategory = catId => {

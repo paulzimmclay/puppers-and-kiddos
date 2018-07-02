@@ -62,7 +62,8 @@ class App extends Component {
 
 logoutStateChange = () => {
   this.setState({
-    currentUserId: 0
+    currentUserId: 0,
+    categories: []
   })
 }
 

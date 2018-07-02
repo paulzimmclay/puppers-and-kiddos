@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import apiURL from '../../DB'
 import './AddCategory.css'
+import { withRouter } from "react-router-dom";
 
 class AddCategory extends Component {
   constructor(props) {
@@ -32,7 +33,8 @@ class AddCategory extends Component {
         category: this.state.category,
         family: this.props.currentUserFamilyId
       })
-    }).then(() => this.props.categoryUpdate());
+    }).then(() => this.props.categoryUpdate())
+    .then(() => this.props.history.push("/"));
     
   };
 
@@ -65,4 +67,4 @@ class AddCategory extends Component {
   }
 }
 
-export default AddCategory;
+export default withRouter(AddCategory);
